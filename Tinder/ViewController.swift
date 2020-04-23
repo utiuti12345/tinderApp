@@ -22,6 +22,9 @@ class ViewController: UIViewController {
     var people = [UIView]()
     var selectedCount: Int = 0
     
+    let names = ["あかね","みさき","みき","カルロス"]
+    var likedName = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         centerOfCard = basicCard.center
@@ -70,6 +73,9 @@ class ViewController: UIViewController {
                     self.people[self.selectedCount].center = CGPoint(x:self.people[self.selectedCount].center.x - 300,y:self.people[self.selectedCount].center.y)
                 }
                 selectedCount += 1
+                if selectedCount >= people.count {
+                    print(likedName)
+                }
                 return
             }else if card.center.x > self.view.frame.width - 75 {
                 // 右に大きくスワイプ
@@ -77,7 +83,11 @@ class ViewController: UIViewController {
                     self.resetCard()
                     self.people[self.selectedCount].center = CGPoint(x:self.people[self.selectedCount].center.x + 300,y:self.people[self.selectedCount].center.y)
                 }
+                likedName.append(names[selectedCount])
                 selectedCount += 1
+                if selectedCount >= people.count {
+                    print(likedName)
+                }
                 return
             }
             
